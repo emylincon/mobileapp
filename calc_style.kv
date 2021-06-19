@@ -1,0 +1,149 @@
+<Button>
+    background_color: "#808080"
+
+<MyLayout>
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        TextInput:
+            id: calc_input
+            text: "0"
+            halign: "right"
+            font_size: 65
+            size_hint: (1, .15)
+            multiline: False
+
+        GridLayout:
+            cols: 4
+            rows: 5
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "%"
+                background_color: "#DCDCDC"
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "Del"
+                background_color: "#DCDCDC"
+                on_press: root.delete()
+
+            Button:
+                id: clear
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "C"
+                background_color: "#DCDCDC"
+                on_press: root.clear()
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "/"
+                background_color: "#DCDCDC"
+                on_press: root.operate("/")
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "7"
+                on_press: root.press_button(7)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "8"
+                on_press: root.press_button(8)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "9"
+                on_press: root.press_button(9)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "x"
+                background_color: "#DCDCDC"
+                on_press: root.operate("*")
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "4"
+                on_press: root.press_button(4)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "5"
+                on_press: root.press_button(5)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "6"
+                on_press: root.press_button(6)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "-"
+                background_color: "#DCDCDC"
+                on_press: root.operate("-")
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "1"
+                on_press: root.press_button(1)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "2"
+                on_press: root.press_button(2)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "3"
+                on_press: root.press_button(3)
+
+
+            Button:
+                id: add_button
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "+"
+                background_color: "#DCDCDC"
+                on_press: root.operate("+")
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "+/-"
+                on_press: root.negate()
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "0"
+                on_press: root.press_button(0)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "."
+                on_press: root.press_dot()
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "="
+                background_color: "#DCDCDC"
+                on_press: root.calculate()
