@@ -6,7 +6,7 @@ from kivy.core.window import Window
 from kivy.lang import Builder
 import re
 
-Window.size = (500, 700)
+#Window.size = (500, 700)
 Builder.load_file('calc_style.kv')
 
 
@@ -15,7 +15,14 @@ class MyLayout(Widget):
         self.ids.calc_input.text = "0"
 
     def calculate(self):
-        self.ids.calc_input.text = f"{eval(self.ids.calc_input.text)}"
+        self.ids.calc_input.text = self.evaluate(self.ids.calc_input.text)
+
+    @staticmethod
+    def evaluate(text):
+        try:
+            return str(eval(text))
+        except Exception as e:
+            return str(e)
 
     def press_button(self, button):
         query = self.ids.calc_input.text
@@ -41,10 +48,18 @@ class MyLayout(Widget):
             self.ids.calc_input.text = query[:-1]
 
     def operate(self, code):
-        query = self.ids.calc_input.text.split(code)
+        query = re.split("[-+/*]", self.ids.calc_input.text)
         if len(query) > 1:
-            self.ids.calc_input.text = f"{eval(self.ids.calc_input.text)}{code}"
+            opcode = self.ids.calc_input.text[-1]
+            if query[-1] != "":
+                self.ids.calc_input.text = f"{self.evaluate(self.ids.calc_input.text)}{code}"
+            elif query[-1] == "" and opcode in ('-', '+') and code in ('-', '+'):
+                self.ids.calc_input.text = f"{self.ids.calc_input.text}{code}"
+            else:
+                self.ids.calc_input.text = "".join(query) + code
+
         else:
+
             self.ids.calc_input.text = f"{self.ids.calc_input.text}{code}"
 
     def negate(self):
