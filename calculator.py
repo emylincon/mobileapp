@@ -20,7 +20,10 @@ class MyLayout(Widget):
     @staticmethod
     def evaluate(text):
         try:
-            return str(eval(text))
+            ans = eval(text)
+            if type(ans).__name__ == "float":
+                ans = round(ans, 10)
+            return str(ans)
         except Exception as e:
             return str(e)
 
