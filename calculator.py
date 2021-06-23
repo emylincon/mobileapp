@@ -6,7 +6,7 @@ from kivy.core.window import Window
 from kivy.lang import Builder
 import re
 
-#Window.size = (500, 700)
+# Window.size = (500, 700)
 Builder.load_file('calc_style.kv')
 
 
